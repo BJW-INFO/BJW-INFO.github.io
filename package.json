@@ -1,0 +1,25 @@
+{
+  "name": "out",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "export": "next export", 
+    "postbuild": "touch out/.nojekyll",
+        "deploy": "npm run build && git checkout --orphan gh-pages-temp && git --work-tree out add --all && git --work-tree out commit -m 'Deploy' && git branch -D gh-pages || true && git branch -m gh-pages && git push -f origin gh-pages && git checkout - && git branch -D gh-pages-temp"
+  },
+  "dependencies": {
+    "@emotion/babel-plugin": "^11.13.5",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "jotai": "^2.13.1",
+    "next": "15.4.6",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-icons": "^5.5.0",
+    "tinycolor2": "^1.6.0"
+  }
+}
