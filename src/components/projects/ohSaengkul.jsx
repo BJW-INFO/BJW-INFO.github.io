@@ -9,6 +9,7 @@ export const OhSaengkul = forwardRef(({ main, handleHrefs }, ref) => {
     const handleReadME = (e,param) => {
         e.preventDefault();
         go(`projects?current=${param}`);
+        // go(`projects?current=${param}`);
     }
 
     return (<li ref={ref}>

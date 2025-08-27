@@ -12,16 +12,17 @@ export default function About() {
 
     return (<>
         <DefualStyle.Section>
-            {!isMain && (<DefualStyle.Title> About Me</DefualStyle.Title>)}
             <Contents>
-                <h2 className="main-title">
-                    개발자<strong>백종욱</strong>입니다.
-                </h2>
+                {isMain && (
+                    <h2 className="main-title">
+                        개발자<strong>백종욱</strong>입니다.
+                    </h2>
+                )}
                 <p className="main-desc">
                     <b>"불가능 하다"</b>는 말은 <b>"아직 방법을 찾지 못했다"</b> 마음가짐으로<br />
                     어제보다 나은 코드를 작성하기 위해 매일 한 걸음씩 나아가며,<br />
-                    기술은 수단일 뿐
-                    <strong> "문제를 해결하는 개발자" </strong>가 되기 위해 꾸준히 성장하고 있습니다.
+                    기술은 수단일 뿐<strong> "문제를 해결하는 개발자"</strong><br/>
+                    가 되기 위해 꾸준히 성장하고 있습니다.
                 </p>
 
             </Contents>

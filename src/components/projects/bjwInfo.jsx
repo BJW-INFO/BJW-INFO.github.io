@@ -54,8 +54,7 @@ const BjwInfo = forwardRef(({ main, handleHrefs }, ref) => {
             )
         }
         <div className='technique'>
-            <p> Flutter, React, React-Router-Dom, Jotai, TailwindCSS</p>
-            <p> SpringBoot, MySQL, MyBatis, AWS(EC2), Supabase(storage) </p>
+            <p>NextJS, React, Emotion, Jotai, tinycolor2</p>
         </div>
     </li>
     )

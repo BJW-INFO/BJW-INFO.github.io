@@ -11,42 +11,47 @@ import React, { useEffect, useRef } from "react"; // Keep React import
 import { usePages } from "@/hooks";
 import BjwInfo from "src/components/projects/bjwInfo";
 
-const components = [
-    OhSaengkul, MusicShare, JavaMarket, ChapssaltteokMarket, BjwInfo,
+const portfolios = [
+    { name: "OhSaengkul", component: OhSaengkul },
+    { name: "MusicShare", component: MusicShare },
+    { name: "JavaMarket", component: JavaMarket },
+    { name: "ChapssaltteokMarket", component: ChapssaltteokMarket },
+    { name: "BjwInfo", component: BjwInfo },
 ];
-
-const portfolios = components.map((Comp) => ({
-  name: Comp.name,
-  component: Comp,
-}));
 
 export default function Projects() {
     const itemRefs = useRef({});
     const { params, path, go } = usePages();
     const { current } = params;
-    const isMain = !path ?true:false;
+    const isMain = !path ? true : false;
 
-    useEffect(()=>{ if(current !== undefined && itemRefs.current[current]) {
-        console.log(current);
-        itemRefs.current[current].scrollIntoView({ behavior: "smooth", block: "start" });
-    }},[current])
+    useEffect(() => {
+        console.log(itemRefs.current);
+        if (current !== undefined && itemRefs.current[current]) {
+            console.log(current);
+            itemRefs.current[current].scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+    }, [current])
 
-    const handleHrefs = (e,path) => {
+    const handleHrefs = (e, path) => {
         e.preventDefault();
         window.open(path, '_blank');
     }
+
+    console.log(portfolios);
+
     return (<>
         <DefualStyle.Section>
             <DefualStyle.Title>
                 Portfolio
             </DefualStyle.Title>
             <Contents main={isMain}>{
-                portfolios.map((o,k)=>{
+                portfolios.map((o, k) => {
                     const ProtFolio = o.component;
-                    return(<ProtFolio 
-                        key={k} 
+                    return (<ProtFolio
+                        key={k}
                         ref={(el) => (itemRefs.current[o.name] = el)}
-                        main={isMain} 
+                        main={isMain}
                         handleHrefs={handleHrefs}
                     />)
                 })
@@ -57,7 +62,7 @@ export default function Projects() {
 
 const Contents = styled.ul`
     all: unset;
-    width: calc( 100% - ${({main})=>main?'10':'60'}px );
+    width: calc( 100% - ${({ main }) => main ? '10' : '60'}px );
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -132,7 +137,7 @@ const Contents = styled.ul`
                 margin-left: auto;
                 margin-right: 5px;
                 border-radius: 5px;
-                background:${({theme})=>theme.bgColor[1]};
+                background:${({ theme }) => theme.bgColor[1]};
                 border: 0.75px solid white
                 color: white;
                 font-weight: 700;
@@ -154,31 +159,37 @@ const Contents = styled.ul`
                 padding: 5px 10px;
                 font-size: 0.8rem;
                 font-weight: 700;
-                color: ${({ theme }) => theme.yellow[0]};;
                 margin-left: 10px;
                 margin-top: 5px;
-                border: 1px solid ${({ theme }) => theme.yellow[0]};
-                border-left: 5px solid ${({ theme }) => theme.yellow[0]};
+                color: ${({ theme }) => theme.blue[3]};
+                border: 1px solid ${({ theme }) => theme.blue[0]};
+                border-left: 5px solid ${({ theme }) => theme.blue[0]};
                 ${({ theme }) => css`
                     background: ${theme.bgColor[1]};
                 `}
             }
             & > p:last-child {
-                color: ${({ theme }) => theme.blue[3]};;
-                border: 1px solid ${({ theme }) => theme.blue[1]};
-                border-left: 5px solid ${({ theme }) => theme.blue[1]};
+                color: ${({ theme }) => theme.yellow[0]};;
+                border: 1px solid ${({ theme }) => theme.yellow[0]};
+                border-left: 5px solid ${({ theme }) => theme.yellow[0]};
+            }
+        }
+
+        &:hover {
+            & > .title {
+                background:${({ theme }) => theme.yellow[0]};  
             }
         }
     }
     & > li:last-child {
         width: 100%;
-        flex-basis: 100%;
+        flex-basis: calc( 100% - 10px );
     }
-    ${({main})=>main
-        ?(media.desktop`
+    ${({ main }) => main
+        ? (media.desktop`
             flex-direction: column;
         `)
-        :(media.tablet`
+        : (media.tablet`
             flex-direction: column;
         `)
     }
